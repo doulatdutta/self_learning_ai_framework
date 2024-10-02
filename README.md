@@ -22,19 +22,20 @@ A self-learning AI framework designed to dynamically modify its own code, create
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/self_learning_ai_framework.git
+
+   git clone https://github.com/doulatdutta/self_learning_ai_framework.git
    cd self_learning_ai_framework
 
 
 - **Set up a virtual environment (optional but recommended):**
 
 python -m venv venv
-source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+
+source venv/bin/activate  
+# On Windows use `venv\Scripts\activate`
 
 **If you encounter an error regarding execution policies, you can temporarily bypass it by running:**
 Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process
-
-
 
 
 --**Install the required packages:**
@@ -53,12 +54,14 @@ python main.py
 
 
 
-You can interact with the AI by typing commands in the terminal. For example:
+Usage
+You can interact with the AI by typing commands in the terminal. Some example commands:
 
 Modify Code: Type modify code add print statement to add a print statement to the code.
-Ask Questions: Simply type your question or request, and the AI will respond in green text.
-To exit the application, type exit or quit.
-
+Ask Questions: Simply type your question or request, and the AI will respond.
+List Code Files: Type list code files to view all code files in the project.
+Create Framework: Type create framework <name> to generate a new AI framework.
+To exit, type exit or quit.
 
 Contributing
 Contributions are welcome! If you have suggestions for improvements or new features, please open an issue or submit a pull request.
@@ -97,5 +100,6 @@ Future Potential:
 Fully Autonomous AI Agent: With further enhancements, the framework could operate as a fully autonomous AI agent, capable of not only analyzing code and suggesting improvements but also executing changes and learning from its environment.
 Self-Creating Tools and Frameworks: The framework could eventually build its own tools and frameworks as necessary to accomplish tasks efficiently without user intervention.
 These features make the self_learning_ai_framework highly versatile and capable of automating development processes, improving itself, and managing complex projects with minimal intervention.
+
 
 
