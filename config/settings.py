@@ -1,5 +1,7 @@
 # config/settings.py
 
+import os
+
 # Define the path for the code folder
 CODE_FOLDER = "D:\\buisness\\AI\\self_learning_ai_framework"
 
@@ -13,6 +15,7 @@ class Settings:
         self.model_storage_path = "models/"
         self.log_file = "logs/app.log"
         self.api_timeout = 60  # in seconds
+        self.code_folder = CODE_FOLDER  # Set the code folder path
 
     def get(self, setting_name):
         """

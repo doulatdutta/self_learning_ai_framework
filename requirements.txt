@@ -10,6 +10,7 @@ flask
 sqlalchemy
 
 
+
 # Core dependencies
 openai
 ollama
@@ -29,3 +30,8 @@ re
 json
 python-dotenv
 pymupdf
+
+#finace data
+yfinance
+talib
+python-dotenv
