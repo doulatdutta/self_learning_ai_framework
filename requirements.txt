@@ -1,0 +1,31 @@
+torch
+transformers
+ray
+dask
+numpy
+pandas
+scikit-learn
+tensorflow
+flask
+sqlalchemy
+
+
+# Core dependencies
+openai
+ollama
+sqlite3
+
+# General utilities
+loguru
+requests
+
+# For code execution security
+restrictedpython
+
+# Other useful libraries (if needed)
+pickle
+os
+re
+json
+python-dotenv
+pymupdf

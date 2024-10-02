@@ -1,0 +1,50 @@
+
+
+from agents.agent_manager import AgentManager
+from core.code_executor import CodeExecutor
+from frameworks.framework_creator import FrameworkCreator
+from utils.logger import Logger
+
+
+def main():
+    # Initialize logger
+    logger = Logger().get_logger()
+    logger.info("Application started.")
+
+    # Initialize agent manager
+    agent_manager = AgentManager()
+
+    # Initialize framework creator
+    framework_creator = FrameworkCreator()
+
+    # Create and run a custom AI framework
+    def sample_framework_code():
+        print("Running custom AI framework logic...")
+        return "Framework completed."
+
+    custom_framework = framework_creator.create_framework(
+        name="CustomFramework",
+        description="This is a sample AI framework.",
+        framework_code=sample_framework_code
+    )
+
+    custom_framework.run()
+
+    # Execute sample code using CodeExecutor
+    code_executor = CodeExecutor()
+    sample_code = '''
+def sample_function():
+    return "Sample function executed."
+result = sample_function()
+    '''
+    exec_result = code_executor.execute_code(sample_code)
+    logger.info(f"Code Execution Result: {exec_result}")
+
+    # Run an agent (you can create your own agents in agents/ directory)
+    agent_name = "SampleAgent"
+    agent_manager.start_agent(agent_name)
+
+    logger.info("Application finished.")
+
+if __name__ == "__main__":
+    main()

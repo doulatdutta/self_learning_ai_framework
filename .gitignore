@@ -1,0 +1,47 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+.Python
+env/
+venv/
+ENV/
+*.egg-info/
+dist/
+build/
+*.whl
+
+# Logs
+*.log
+logs/
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.coverage
+coverage.xml
+*.cover
+
+# Virtual environments
+.venv/
+*.env
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# IDEs and editors
+.vscode/
+.idea/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Secrets
+config/secrets.py
+
+# Database
+*.db
+*.sqlite3

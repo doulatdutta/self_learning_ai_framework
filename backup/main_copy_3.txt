@@ -1,0 +1,83 @@
+import logging
+import os
+from core.code_executor import CodeExecutor
+from core.code_modifier import CodeModifier
+from config.secrets import Secrets
+
+from models.model_manager import ModelManager
+from core.pdf_reader import PDFReader
+
+import openai
+from datetime import datetime
+
+class Colors:
+    GREEN = "\033[92m"  # Green text
+    BLUE = "\033[94m"   # Blue text
+    RESET = "\033[0m"   # Reset to default color
+
+def process_input(user_input, secrets):
+    api_key = secrets.get_secret("api_key")
+    openai.api_key = api_key
+    
+    try:
+        response = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo",
+            messages=[{"role": "user", "content": user_input}]
+        )
+        
+        reply = response.choices[0].message['content']
+        return reply
+    except Exception as e:
+        return f"Error: {str(e)}"
+
+def process_pdf_files(input_folder, model_manager):
+    pdf_reader = PDFReader()
+    
+    for file in os.listdir(input_folder):
+        if file.endswith('.pdf'):
+            pdf_path = os.path.join(input_folder, file)
+            print(f"Reading PDF file: {pdf_path}")
+            text = pdf_reader.read_pdf(pdf_path)
+
+            # Specify your model name
+            model_name = "MyModel"  
+            model_manager.train_model(model_name, text)
+    
+    # After training, respond that training is complete
+    print("Training completed.")
+
+def main():
+    logger = logging.getLogger('app_logger')
+    logger.info("Application started.")
+
+    secrets = Secrets()
+    code_executor = CodeExecutor()
+    code_modifier = CodeModifier()
+
+    # Specify the input folder
+    input_folder = "input"
+
+    # Check if the user wants to train the model
+    user_input = input("Would you like to train with PDF files? (yes/no): ")
+    model_manager = ModelManager()  # Initialize the model manager here
+    if user_input.lower() == "yes":
+        model_manager.load_model("MyModel")  # Load existing model if any
+        print("Starting training with PDF files...")
+        process_pdf_files(input_folder, model_manager)
+    elif user_input.lower() == "no":
+        print("Training skipped. You can now interact with the AI.")
+
+    while True:
+        user_input = input("You: ")
+        if user_input.lower() in ['exit', 'quit']:
+            logger.info("Exiting the application.")
+            break
+
+        print(f"{Colors.BLUE}You: {user_input}{Colors.RESET}")
+
+        # Process the user input to get AI response
+        response = process_input(user_input, secrets)
+        print(f"{Colors.GREEN}AI: {response}{Colors.RESET}")
+
+if __name__ == "__main__":
+    main()

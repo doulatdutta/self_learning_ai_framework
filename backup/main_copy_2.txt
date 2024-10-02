@@ -1,0 +1,63 @@
+import logging
+from core.code_executor import CodeExecutor
+from core.code_modifier import CodeModifier
+from config.secrets import Secrets
+import openai
+
+class Colors:
+    GREEN = "\033[92m"  # Green text
+    BLUE = "\033[94m"   # Blue text
+    RESET = "\033[0m"   # Reset to default color
+
+def process_input(user_input, secrets):
+    """
+    Process user input by sending it to the OpenAI API and returning the response.
+
+    :param user_input: The input string from the user.
+    :param secrets: An instance of the Secrets class to retrieve the API key.
+    :return: The AI response as a string.
+    """
+    api_key = secrets.get_secret("api_key")
+    openai.api_key = api_key
+    
+    try:
+        response = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {"role": "user", "content": user_input}
+            ]
+        )
+        
+        reply = response.choices[0].message['content']
+        return reply
+    except Exception as e:
+        return f"Error: {str(e)}"
+
+def main():
+    logger = logging.getLogger('app_logger')
+    logger.info("Application started.")
+
+    secrets = Secrets()
+    code_executor = CodeExecutor()
+    code_modifier = CodeModifier()
+
+    while True:
+        user_input = input("You: ")
+        if user_input.lower() in ['exit', 'quit']:
+            logger.info("Exiting the application.")
+            break
+
+        print(f"{Colors.BLUE}You: {user_input}{Colors.RESET}")
+
+        if "modify code" in user_input:
+            original_code = "def old_function():\n    pass"
+            modification = user_input.split("modify code ")[1]
+            modified_code = code_modifier.modify_code(original_code, modification)
+            print(f"Modified Code:\n{modified_code}")
+            exec(modified_code)  # Caution: Use exec carefully in production code!
+        else:
+            response = process_input(user_input, secrets)
+            print(f"{Colors.GREEN}AI: {response}{Colors.RESET}")
+
+if __name__ == "__main__":
+    main()

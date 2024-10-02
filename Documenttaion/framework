@@ -1,0 +1,49 @@
+    self_learning_ai_framework/
+├── agents/
+│   ├── __init__.py
+│   ├── master_agent.py
+│   ├── agent_base.py
+│   ├── agent_worker.py
+│   ├── agent_manager.py
+├── core/
+│   ├── __init__.py
+│   ├── code_executor.py
+│   ├── code_modifier.py
+│   ├── code_generator.py
+│   ├── decision_maker.py
+│   ├── pdf_reader.py
+│   ├── environment.py
+│   ├── self_assessment.py
+├── tools/
+│   ├── __init__.py
+│   ├── tool_base.py
+│   ├── tool_creator.py
+├── frameworks/
+│   ├── __init__.py
+│   ├── framework_base.py
+│   ├── framework_creator.py
+├── models/
+│   ├── __init__.py
+│   ├── model_manager.py
+├── data/
+│   ├── __init__.py
+│   ├── data_manager.py
+│   ├── database.py
+├── logs/
+│   ├── __init__.py
+├── config/
+│   ├── __init__.py
+│   ├── settings.py
+│   ├── secrets.py
+├── utils/
+│   ├── __init__.py
+│   ├── helpers.py
+│   ├── validators.py
+│   ├── logger.py
+├── tests/
+│   ├── __init__.py
+├── main.py
+├── requirements.txt
+├── README.md
+└── .gitignore
+
